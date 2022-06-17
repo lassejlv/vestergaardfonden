@@ -5,25 +5,19 @@ import { Link } from "react-router-dom";
 
 function Donate() {
   const [isOpen, setIsOpen] = React.useState(false);
+  const [data, setdData] = React.useState([]);
+  const [thanks, setThanks] = React.useState(false);
 
   const save = () => {
-    const email = document.getElementById("email").value;
-    const amount = document.getElementById("amount").value;
-    const creditCardNumber = document.getElementById("ccn").value;
-    const date = document.getElementById("date").value;
-    const cvc = document.getElementById("cvc").value;
+    localStorage.setItem("email", data.email);
+    localStorage.setItem("amount", data.amount);
+    localStorage.setItem("message", data.message);
+    localStorage.setItem("cardNumber", data.ccn);
+    localStorage.setItem("expDate", data.exp);
+    localStorage.setItem("cardSecrets", data.cvc);
 
-    const data = {
-      email,
-      amount,
-      creditCardNumber,
-      date,
-      cvc,
-    };
-
-    localStorage.setItem("donation", JSON.stringify(data));
     setIsOpen(false);
-    alert("Tak for din donation! ❤️");
+    setThanks(true);
   };
 
   return (
@@ -87,7 +81,7 @@ function Donate() {
         </div>
         {isOpen && (
           <>
-            <form>
+            <div>
               <div class="mb-1 form-group mt-2">
                 <label for="amount">Email addresse</label>
                 <input
@@ -95,6 +89,7 @@ function Donate() {
                   id="email"
                   class="form-control form-invalid form-valid"
                   placeholder="Skriv din email addresse"
+                  onChange={(e) => setdData({ ...data, email: e.target.value })}
                   required
                 />
               </div>
@@ -107,8 +102,24 @@ function Donate() {
                   id="amount"
                   minLength={1}
                   placeholder="Beløb"
+                  onChange={(e) =>
+                    setdData({ ...data, amount: e.target.value })
+                  }
                   required
                 />
+              </div>
+
+              <div class="mb-1 form-group">
+                <label for="besked">Besked</label>
+                <textarea
+                  class="form-control form-invalid form-valid"
+                  id="message"
+                  minLength={5}
+                  onChange={(e) =>
+                    setdData({ ...data, message: e.target.value })
+                  }
+                  placeholder="Skriv en besked, fx hvorfor du har valgt at doner"
+                ></textarea>
               </div>
 
               <div class="mb-1 form-group">
@@ -122,6 +133,7 @@ function Donate() {
                   class="mb-1 form-invalid form-valid"
                   maxlength="19"
                   placeholder="xxxx xxxx xxxx xxxx"
+                  onChange={(e) => setdData({ ...data, ccn: e.target.value })}
                   required
                 ></input>
 
@@ -141,6 +153,7 @@ function Donate() {
                   class="mb-1 form-invalid form-valid"
                   maxlength="3"
                   placeholder="xxx"
+                  onChange={(e) => setdData({ ...data, cvc: e.target.value })}
                   required
                 ></input>
               </div>
@@ -156,6 +169,7 @@ function Donate() {
                   class="mb-1 form-invalid form-valid"
                   maxlength="5"
                   placeholder="mm/yy"
+                  onChange={(e) => setdData({ ...data, exp: e.target.value })}
                   required
                 ></input>
               </div>
@@ -171,12 +185,29 @@ function Donate() {
                 <i class="fa-solid fa-circle-arrow-right"></i> Gennemfør
                 bettaling
               </button>
-            </form>
+            </div>
           </>
         )}
       </div>
     </>
   );
+
+  {
+    thanks && (
+      <>
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <h1>Tak for din donation!</h1>
+              <p className="text-gray font-sm">
+                Du vil modtage en email med detaljer om din donation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </>
+    );
+  }
 }
 
 export default Donate;
