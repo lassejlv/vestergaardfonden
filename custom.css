@@ -1,0 +1,23 @@
+/*
+ - HypeStyle CSS v0.1.9 (https://hypestyle.netlify.app)
+ - Copyright 2022 Hypll Development. / HypeStyle LABS
+ - Licensed under MIT (https://github.com/hypestyle/hypestyle/blob/master/LICENSE)
+*/
+.text-primary { color: #4cae51 !important; }
+.bg-primary { background-color: #4cae51 !important; }
+.text-secondary { color: #f5f5f5 !important; }
+.bg-secondary { background-color: #f5f5f5 !important; }
+.text-heartRed { color: #ef5261 !important; }
+.bg-heartRed { background-color: #ef5261 !important; }
+.text-stripe { color: #6773e6 !important; }
+.bg-stripe { background-color: #6773e6 !important; }
+.text-mobilepay { color: #5974f8 !important; }
+.bg-mobilepay { background-color: #5974f8 !important; }
+.text-paypal { color: #0293d3 !important; }
+.bg-paypal { background-color: #0293d3 !important; }
+
+
+
+
+
+
