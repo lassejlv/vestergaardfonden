@@ -1,7 +1,5 @@
 ## Vetsergaardfonden
 
-Ingen scam, nemt, sikkert og enkelt.
-
 Setup:
 
 ```bash
